@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        #range {
+      position: absolute;
+      bottom: 10px;
+      /*width: 60%;*/
+      margin-left: 20%;
+      margin-right: 20%;
+      }
+      #rangeInput {
+      width: 900px;
+      
+              }
+    </style>
+</head>
+<body>
+​
+<div id='map'></div>
+<div id="range">
+      <input id="rangeInput" type="range" min="2006" max="2014" step="2" value="2006" />
+      </div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoicG9vcm5pLWJhZHJpbmF0aCIsImEiOiJjaWVoOGFiNWUwMDl2c3JtMXBzcWluaDN5In0.uunHEpdx8grTpnmTwTwxHA';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/poorni-badrinath/cio5syg6c006zydnkdfcc18em' //stylesheet location
+    // center: [77.6, 12.98], // starting position
+    // zoom: 0 // starting zoom
+});
+// if the rangeInput.value is <=min then filter=nothing
+document.getElementById('rangeInput').addEventListener('input', function(e) {
+      var value = this.value;
+      console.log(value);
+      console
+     
+        map.setFilter('Critical', ['==', 'Year', parseInt(value)]);
+        map.setFilter('Endangered', ['==', 'Year', parseInt(value)]);
+     
+      console.log(map.getFilter('TimeLine'));
+          });
+</script>
+​
+</body>
+</html>
